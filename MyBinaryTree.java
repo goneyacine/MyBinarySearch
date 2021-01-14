@@ -1,8 +1,9 @@
-
-public class MyBinaryTree{
+import java.util.*;
+import java.io.*;
+public class MyBinaryTree implements Serializable{
  
- public TreeNode head;
+ private TreeNode head;
 
- public MyBinaryTree(List<TreeNode> headChildNodes){ head = new TreeNode(headChildNodes); }
-
+ public MyBinaryTree(List<TreeNode> headChildNodes){ head = new TreeNode(headChildNodes,"x",null); }
+ public TreeNode getHead(){return head;}
 }

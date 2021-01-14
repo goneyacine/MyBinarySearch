@@ -3,7 +3,7 @@ import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.FileWriter;
-
+//is this something
 public class DataScraper{
   public static void main(String[] args) throws Exception{
   	Scanner scan = new Scanner(System.in);

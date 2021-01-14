@@ -4,7 +4,9 @@ import java.util.*;
 
 public class CharID {
 
-    public static void main(String[] args) throws Exception {
+    public static List<Character> getCharsID()  {
+    List<Character> chars = new ArrayList<Character>();
+    try{
      Scanner input = new Scanner(System.in);
      System.out.println("ENTER THE INPUT FILE PATH");
      String inputFilePath = input.nextLine();
@@ -23,6 +25,7 @@ public class CharID {
       }
      }
      System.out.println("DONE");
+   }catch(Exception e){e.printStackTrace();}
+   return chars;
    }
-   public static List<Character> chars = new ArrayList<Character>();
 }
