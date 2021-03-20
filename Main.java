@@ -2,18 +2,9 @@ import java.util.Scanner;
 import java.io.File;
 import java.util.*;
 import java.io.*;
-//import com.google.gson.Gson;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.client.*;
-import org.bson.Document;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
-import static com.mongodb.client.model.Filters.*;
-import static com.mongodb.client.model.Updates.set;
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
-import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
-
 public class Main{
+ private String binaryTreeDataPath = "BinaryTree\\";
+ private static List<String> binaryTreeData = new ArrayList<String>();
  public static void main(String[] args) {
  	try{
  	List<Character> IDs = CharID.getCharsID();
@@ -24,21 +15,23 @@ public class Main{
     names.add(scan.nextLine());
     }
     MyBinaryTree tree = SortNames.initialSort(names,IDs);
-      mongoClient = MongoClients.create();
-           mongoDatabase = mongoClient.getDatabase("tree");
-            CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
-                    fromProviders(PojoCodecProvider.builder().automatic(true).build()));
-            mongoDatabase = mongoDatabase.withCodecRegistry(pojoCodecRegistry);
-             mongoDatabase.getCollection("Tree",TreeNode.class).insertOne(tree.getHead());
-   // Gson gson = new Gson();
-   // File file = new File("NamesTree.json");
-    //String j = gson.toJson(tree.getHead().getChilds().get(0));
-   // System.out.println(j);
-   // FileWriter writer = new FileWriter(file);
-   // writer.write();
-   // writer.close();
+     serializeBinaryTree(tree.getHead());
+ for(String data : binaryTreeData)
+  System.out.print("<<<........................................>>>> \n" + data);
  }catch(Exception e){e.printStackTrace();}
  }
-  private static MongoDatabase mongoDatabase;
-    private static MongoClient mongoClient;
+ private static void serializeBinaryTree(TreeNode node){
+  for(TreeNode childNode : node.getChilds()){
+   if(binaryTreeData.size() == childNode.layer)
+    binaryTreeData.set(childNode.layer - 2,binaryTreeData.get(childNode.layer - 2) + "\n <" + childNode.myID + ">...<" + childNode.getName() + ">");
+  else{
+    binaryTreeData.add(" ");
+   binaryTreeData.set(childNode.layer - 2,binaryTreeData.get(childNode.layer - 2) + "\n <" + childNode.myID + ">...<" + childNode.getName() + ">");
+  }
+
+  if(node.getChilds().size() > 0)
+    serializeBinaryTree(childNode);
+  }
+ }
+
 }

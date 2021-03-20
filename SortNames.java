@@ -1,6 +1,6 @@
 import java.util.*;
 public class SortNames{
-  
+
  public static MyBinaryTree initialSort(List<String> names,List<Character> charsID){
   if(names.size() == 0 || names == null){ return null; }
   boolean canIterate = true;
@@ -37,7 +37,7 @@ public class SortNames{
       }else {
       	String newNodeName = "";
       	newNodeName += name.charAt(charIndex);
-      	TreeNode newNode = new TreeNode(new ArrayList<TreeNode>(),newNodeName,parentNode);
+      	TreeNode newNode = new TreeNode(new ArrayList<TreeNode>(),newNodeName);
         parentNode.addNode(newNode,charsID);
         if(charIndex < name.length() - 1)
          addNameIntoNode(name,charIndex + 1,newNode,charsID);
@@ -49,14 +49,18 @@ public class SortNames{
   	   
          }
 
-       }
-  	}else {continue;}
+       
+  	}
   }
     
- }else{ 
+ }
+}else{ 
  	    String newNodeName = "";
       	newNodeName += name.charAt(charIndex);
-      	TreeNode newNode = new TreeNode(new ArrayList<TreeNode>(),newNodeName,parentNode);
+      	TreeNode newNode = new TreeNode(new ArrayList<TreeNode>(),newNodeName);
+        newNode.setParentID(parentNode.myID);
+        newNode.setMyID(0);
+        newNode.setLayer(parentNode.layer);
         parentNode.addNode(newNode,charsID);
         if(charIndex < name.length() - 1)
          addNameIntoNode(name,charIndex + 1,newNode,charsID);
@@ -66,6 +70,6 @@ public class SortNames{
   	     nodeNames.add(name);
   	     newNode.setNames(nodeNames);
          }
- } 
-}
-}
+      } 
+    }
+  }
