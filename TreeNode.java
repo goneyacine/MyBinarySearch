@@ -56,6 +56,7 @@ public class TreeNode {
     } 
     public void setMyID(int order){
      this.myID = this.parentID + "^" + order; 
+     System.out.println(myID);
     }
     public void setLayer(int parentLayer){
     this.layer = parentLayer + 1;

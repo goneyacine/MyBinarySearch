@@ -1,15 +1,12 @@
 import java.util.*;
 public class SortNames{
-
+ private static List<String> binaryTreeData = new ArrayList<String>();
  public static MyBinaryTree initialSort(List<String> names,List<Character> charsID){
   if(names.size() == 0 || names == null){ return null; }
   boolean canIterate = true;
   int leftPivot = 0;
   int rightPivot = names.size()  - 1;
   MyBinaryTree tree = new MyBinaryTree(new ArrayList<TreeNode>());
-  for(String name : names){
-  	addNameIntoNode(name,0,tree.getHead(),charsID);
-  }
   return tree;
  }
  public static void addNameIntoNode(String name,int charIndex,TreeNode parentNode,List<Character> charsID){
@@ -69,7 +66,7 @@ public class SortNames{
          List<String> nodeNames = new ArrayList<String>();
   	     nodeNames.add(name);
   	     newNode.setNames(nodeNames);
-         }
-      } 
-    }
+        }
+    } 
   }
+}

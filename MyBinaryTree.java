@@ -8,7 +8,7 @@ public class MyBinaryTree{
   head = new TreeNode(headChildNodes,"x");
   head.setParentID("...");
   head.setMyID(0);
-  head.setLayer(0);
+  head.setLayer(-1);
   }
  public TreeNode getHead(){return head;}
 }
